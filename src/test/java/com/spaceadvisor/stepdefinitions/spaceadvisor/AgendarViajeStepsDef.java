@@ -5,6 +5,7 @@ import com.spaceadvisor.screenplay.interactions.checkout.ClickPayNow;
 import com.spaceadvisor.screenplay.interactions.destination.ClickBookButton;
 import com.spaceadvisor.screenplay.interactions.destination.ClickDestination;
 import com.spaceadvisor.screenplay.interactions.destination.ClickLoadMore;
+import com.spaceadvisor.screenplay.questions.checkout.ConfirmationMessage;
 import com.spaceadvisor.screenplay.tasks.booking.SelectAdults;
 import com.spaceadvisor.screenplay.tasks.booking.SelectChildren;
 import com.spaceadvisor.screenplay.tasks.booking.SelectDate;
@@ -20,6 +21,8 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import static com.google.common.base.Predicates.equalTo;
+import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 
 public class AgendarViajeStepsDef {
@@ -120,6 +123,9 @@ public class AgendarViajeStepsDef {
 
     @Then("deberia ver el mensaje {string}")
     public void deberiaVerElMensaje(String expectedMessage) {
+        theActorInTheSpotlight().should(
+                seeThat("confirmation message", ConfirmationMessage.value(), equalTo(expectedMessage))
+        );
     }
 
     @Then("Pause")

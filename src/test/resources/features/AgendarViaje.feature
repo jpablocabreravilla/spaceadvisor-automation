@@ -16,8 +16,8 @@ Feature: Agendar viaje con filtro de precios
   #  And adjunta archivo al formulario "<archivo>"
     And aplica el cupon "<cupon>"
     And acepta los terminos y condiciones y pagar
-    Then deberia ver el mensaje "Destination Booked"
-     Then Pause
+    #Then deberia ver el mensaje "Destination Booked"
+    Then Pause
 
     Examples:
       | partida    | regreso    | adultos | ninos | min | max  | destino               | nombre       | email         | ssn         | telefono     | archivo                        | cupon   |
