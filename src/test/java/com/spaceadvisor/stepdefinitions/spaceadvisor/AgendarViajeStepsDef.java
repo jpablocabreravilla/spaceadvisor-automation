@@ -5,6 +5,7 @@ import com.spaceadvisor.screenplay.interactions.destination.ClickLoadMore;
 import com.spaceadvisor.screenplay.tasks.booking.SelectAdults;
 import com.spaceadvisor.screenplay.tasks.booking.SelectChildren;
 import com.spaceadvisor.screenplay.tasks.booking.SelectDate;
+import com.spaceadvisor.screenplay.tasks.destination.FilterByPrice;
 import com.spaceadvisor.screenplay.tasks.general.OpenApplication;
 import com.spaceadvisor.screenplay.ui.booking.SearchOptionsUI;
 import com.spaceadvisor.utilities.DateFormatter;
@@ -70,6 +71,9 @@ public class AgendarViajeStepsDef {
 
     @When("filtra por precio minimo {string} y maximo {string}")
     public void filtraPorPrecio(String minPrice, String maxPrice) {
+        theActorInTheSpotlight().attemptsTo(
+                FilterByPrice.withRange(minPrice, maxPrice)
+        );
     }
 
     @When("elige el destino {string}")
