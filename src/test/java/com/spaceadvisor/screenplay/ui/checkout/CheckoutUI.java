@@ -35,4 +35,16 @@ public class CheckoutUI {
     public static final Target FILE_INPUT = Target.the("file upload input")
             .locatedBy("//div[contains(@class,'CustomerInfo__dropzone')]/input[@type='file']");
 
+    public static final Target ORDER_DATES = Target.the("Dates value")
+            .located(By.xpath("//div[contains(@class,'OrderSummary__order-summary')]//div[contains(text(),'Dates')]/following-sibling::div"));
+
+    public static final Target ORDER_TRAVELERS = Target.the("order summary travelers label")
+            .located(By.xpath("//div[contains(@class,'OrderSummary__order-summary')]//div[contains(normalize-space(text()),'traveler')]"));
+
+    public static final Target ORDER_TRAVELERS_PRICE_UNITARY = Target.the("order summary travelers price")
+            .located(By.xpath("//div[contains(@class,'OrderSummary__order-summary')]//div[contains(normalize-space(text()),'traveler')]/following-sibling::div"));
+
+    public static final Target ORDER_TOTAL_PRICE = Target.the("order summary total price")
+            .located(By.xpath("//div[contains(@class,'OrderSummary__order-summary')]//div[contains(@class,'OrderSummary__price')]//strong"));
+
 }

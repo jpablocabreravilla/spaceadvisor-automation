@@ -19,11 +19,12 @@ Feature: Agendar viaje parametrizando los filtros.
     And aplica el cupon "<cupon>"
     And acepta los terminos y condiciones
     And finalizar el pago
-    Then deberia ver el mensaje "Destination Booked"
+    Then los datos de la orden de compra deben ser correctos
+    #Then deberia ver el mensaje "Destination Booked"
 
     Examples:
-      | partida    | regreso    | adultos | ninos | min | max  | destino               | nombre       | email         | ssn         | telefono     | archivo                              | cupon   |
-      | 25/09/2025 | 01/10/2025 | 2       | 1     | 100 | 1000 | Tongli | Juan Cabrera | juan@test.com | 123-45-6789 | +17871234567 | src/test/resources/data/dataTest.png | PROMO10 |
+      | partida    | regreso    | adultos | ninos | min | max  | destino   | nombre       | email         | ssn         | telefono     | archivo                              | cupon    |
+      | 25/09/2025 | 01/10/2025 | 4       | 2     | 100 | 1000 | Flagstaff | Juan Cabrera | juan@test.com | 123-45-6789 | +17871234567 | src/test/resources/data/dataTest.png | PROMO10A |
 
       # Reglas y restricciones para este escenario:
       # 1. Las fechas de partida y regreso deben seguir el formato dd/mm/yyyy.
@@ -51,10 +52,11 @@ Feature: Agendar viaje parametrizando los filtros.
     And adjunta archivo al formulario "<archivo>"
     And aplica el cupon "<cupon>"
     And finalizar el pago
+    Then los datos de la orden de compra deben ser correctos
 
     Examples:
-      | partida    | regreso    | adultos | ninos | color | destino | nombre       | email         | ssn         | telefono     | archivo                              | cupon   |
-      | 25/09/2025 | 01/10/2025 | 2       | 1     | Red   | Shenji  | Juan Cabrera | juan@test.com | 123-45-6789 | +17871234567 | src/test/resources/data/dataTest.png | PROMO10 |
+      | partida    | regreso    | adultos | ninos | color | destino | nombre       | email         | ssn         | telefono     | archivo                              | cupon    |
+      | 27/09/2025 | 02/10/2025 | 2       | 2     | Red   | Shenji  | Juan Cabrera | juan@test.com | 123-45-6789 | +17871234567 | src/test/resources/data/dataTest.png | PROMO20B |
 
       # Reglas y restricciones para este escenario:
       # 1. Las fechas de partida y regreso deben seguir el formato dd/mm/yyyy.
