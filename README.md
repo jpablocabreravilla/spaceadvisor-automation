@@ -14,4 +14,11 @@ Web Automation
 https://demo.testim.io/
 
 ## Terminal
-mvn clean verify   
+Maven:
+mvn clean
+mvn clean test 
+mvn clean verify
+
+Junit:
+-Dcucumber.filter.tags=@tagName
+
