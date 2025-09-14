@@ -1,5 +1,7 @@
 package com.spaceadvisor.stepdefinitions.spaceadvisor;
 
+import com.spaceadvisor.screenplay.interactions.checkout.AcceptTerms;
+import com.spaceadvisor.screenplay.interactions.checkout.ClickPayNow;
 import com.spaceadvisor.screenplay.interactions.destination.ClickBookButton;
 import com.spaceadvisor.screenplay.interactions.destination.ClickDestination;
 import com.spaceadvisor.screenplay.interactions.destination.ClickLoadMore;
@@ -32,7 +34,7 @@ public class AgendarViajeStepsDef {
     @When("selecciona fechas de partida {string} y regreso {string}")
     public void seleccionaFechas(String departure, String returning) {
         var departureDate = DateFormatter.convert(departure);   // dd/MM/yyyy
-        var returnDate    = DateFormatter.convert(returning);
+        var returnDate = DateFormatter.convert(returning);
 
         //theActorInTheSpotlight().remember("DEPARTURE", departureDate);
         //theActorInTheSpotlight().remember("RETURN",    returnDate);
@@ -110,6 +112,10 @@ public class AgendarViajeStepsDef {
 
     @When("acepta los terminos y condiciones y pagar")
     public void aceptaLosTerminosYCondicionesYPagar() {
+        theActorInTheSpotlight().attemptsTo(
+                AcceptTerms.now(),
+                ClickPayNow.button()
+        );
     }
 
     @Then("deberia ver el mensaje {string}")
