@@ -1,7 +1,8 @@
 package com.spaceadvisor.stepdefinitions.spaceadvisor;
 
-import com.spaceadvisor.screenplay.interactions.destination.ClickDestination;
+import com.spaceadvisor.screenplay.interactions.destination.SelectDestination;
 import com.spaceadvisor.screenplay.interactions.destination.ClickLoadMore;
+import com.spaceadvisor.screenplay.interactions.destination.ClickLaunch;
 import com.spaceadvisor.screenplay.tasks.booking.SelectAdults;
 import com.spaceadvisor.screenplay.tasks.booking.SelectChildren;
 import com.spaceadvisor.screenplay.tasks.booking.SelectDate;
@@ -64,7 +65,7 @@ public class AgendarViajeStepsDef {
     @When("pulsa en SELECT DESTINATION y luego LOAD MORE")
     public void pulsaEnSelectDestinationYLuegoLoadMore() {
         theActorInTheSpotlight().attemptsTo(
-                ClickDestination.button(),
+                SelectDestination.click(),
                 ClickLoadMore.button()
         );
     }
@@ -78,6 +79,10 @@ public class AgendarViajeStepsDef {
 
     @When("elige el destino {string}")
     public void eligeElDestino(String destination) {
+        theActorInTheSpotlight().attemptsTo(
+                ClickLaunch.on(destination),
+                SelectDestination.click()
+        );
     }
 
     @When("completa el formulario con nombre {string}, email {string}, ssn {string}, telefono {string}")

@@ -9,7 +9,7 @@ import net.serenitybdd.screenplay.waits.WaitUntil;
 import static net.serenitybdd.screenplay.Tasks.instrumented;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isClickable;
 
-public class ClickDestination implements Interaction {
+public class SelectDestination implements Interaction {
 
     @Override
     public <T extends Actor> void performAs(T actor) {
@@ -20,7 +20,7 @@ public class ClickDestination implements Interaction {
         );
     }
 
-    public static ClickDestination button() {
-        return instrumented(ClickDestination.class);
+    public static SelectDestination click() {
+        return instrumented(SelectDestination.class);
     }
 }
