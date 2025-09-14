@@ -9,11 +9,10 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue = {
                 "com.spaceadvisor.stepdefinitions",
-                "com.spaceadvisor.stepdefinitions.hooks",
-                "net.serenitybdd.cucumber.actors"
+                "com.spaceadvisor.stepdefinitions.hooks"
         },
+        snippets = CucumberOptions.SnippetType.CAMELCASE,
         plugin = {"pretty"},
-        snippets = CucumberOptions.SnippetType.CAMELCASE
+        monochrome = true
 )
-public class RunnerTest {
-}
+public class RunnerTest { }

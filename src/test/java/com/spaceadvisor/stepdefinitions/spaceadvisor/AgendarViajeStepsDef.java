@@ -3,7 +3,6 @@ package com.spaceadvisor.stepdefinitions.spaceadvisor;
 import com.spaceadvisor.screenplay.interactions.checkout.AcceptTerms;
 import com.spaceadvisor.screenplay.interactions.checkout.ClickPayNow;
 import com.spaceadvisor.screenplay.interactions.destination.ClickBookButton;
-import com.spaceadvisor.screenplay.interactions.destination.ClickColor;
 import com.spaceadvisor.screenplay.interactions.destination.ClickDestination;
 import com.spaceadvisor.screenplay.interactions.destination.ClickLoadMore;
 import com.spaceadvisor.screenplay.questions.checkout.ConfirmationMessage;
@@ -24,9 +23,9 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import static com.google.common.base.Predicates.equalTo;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
+import static org.hamcrest.Matchers.equalTo;
 
 public class AgendarViajeStepsDef {
 
