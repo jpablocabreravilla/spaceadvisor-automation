@@ -7,6 +7,7 @@ import com.spaceadvisor.screenplay.interactions.destination.ClickBookButton;
 import com.spaceadvisor.screenplay.interactions.destination.ClickDestination;
 import com.spaceadvisor.screenplay.interactions.destination.ClickLoadMore;
 import com.spaceadvisor.screenplay.questions.checkout.ConfirmationMessage;
+import com.spaceadvisor.screenplay.questions.checkout.TermsAndConditionsMessage;
 import com.spaceadvisor.screenplay.questions.checkout.TheOrderSummary;
 import com.spaceadvisor.screenplay.tasks.booking.SelectAdults;
 import com.spaceadvisor.screenplay.tasks.booking.SelectChildren;
@@ -185,6 +186,11 @@ public class AgendarViajeStepsDef {
         assertThat(summaryFront.getDates(), equalTo(expectedDateRange));
         assertThat(summaryFront.getTravelers(), equalTo(expectedTravelers));
         assertThat(summaryFront.getUnitPrice(), equalTo(formatUSD(ExpectedUnitPrice)));
+    }
+
+    @Then("se debe desplegar una alerta con el mensaje {string}")
+    public void seDebeDesplegarUnaAlertaConElMensaje(String expectedMessage) {
+        theActorInTheSpotlight().should(seeThat(TermsAndConditionsMessage.text(), equalTo(expectedMessage)));
     }
 
 }

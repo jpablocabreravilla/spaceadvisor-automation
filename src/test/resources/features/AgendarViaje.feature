@@ -6,7 +6,7 @@ Feature: Agendar viaje parametrizando los filtros.
   Background:
     Given el usuario ingresa a la web de reservas
 
-  @FiltroA
+  @AutomationA
   Scenario Outline: Reserva exitosa filtrando por precio
     When selecciona fechas de partida "<partida>" y regreso "<regreso>"
     And define pasajeros adultos "<adultos>" y ninos "<ninos>"
@@ -40,7 +40,7 @@ Feature: Agendar viaje parametrizando los filtros.
       # 11. Al presionar el botón PAY NOW, el sistema debe mostrar/simular el mensaje "Destination Booked".
       #     -> Fallo intencionado ya que la web no muestra dicho mensaje.
 
-  @FiltroB
+  @AutomationB
   Scenario Outline: Reserva exitosa filtrando por color de planeta
     When selecciona fechas de partida "<partida>" y regreso "<regreso>"
     And define pasajeros adultos "<adultos>" y ninos "<ninos>"
@@ -51,8 +51,9 @@ Feature: Agendar viaje parametrizando los filtros.
     And completa el formulario con nombre "<nombre>", email "<email>", ssn "<ssn>", telefono "<telefono>"
     And adjunta archivo al formulario "<archivo>"
     And aplica el cupon "<cupon>"
-    And finalizar el pago
     Then los datos de la orden de compra deben ser correctos
+    Then finalizar el pago
+    Then se debe desplegar una alerta con el mensaje "You must agree to the terms and conditions to complete your purchase."
 
     Examples:
       | partida    | regreso    | adultos | ninos | color | destino | nombre       | email         | ssn         | telefono     | archivo                              | cupon    |
@@ -70,4 +71,4 @@ Feature: Agendar viaje parametrizando los filtros.
       # 9. El número de teléfono debe iniciar con +1787 y contener exactamente 7 dígitos adicionales.
       # 10. La ruta del archivo debe existir dentro de src/test/resources/data/.
       # 11. El código de cupón debe venir parametrizado desde el Example.
-      # 12. Al presionar el botón PAY NOW, la transacción debe completarse (sin necesidad de aceptar términos en este escenario).
+      # 12. Al presionar el botón PAY NOW, debe de salir un recuadro indicando que se deben aceptar los terminos y condiciones.

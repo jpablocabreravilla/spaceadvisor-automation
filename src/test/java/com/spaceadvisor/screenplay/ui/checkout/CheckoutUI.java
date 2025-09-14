@@ -47,4 +47,7 @@ public class CheckoutUI {
     public static final Target ORDER_TOTAL_PRICE = Target.the("order summary total price")
             .located(By.xpath("//div[contains(@class,'OrderSummary__order-summary')]//div[contains(@class,'OrderSummary__price')]//strong"));
 
+    public static final Target TERMS_AND_CONDITIONS_MESSAGE = Target.the("Terms and Conditions message")
+            .locatedBy("//*[text()='Terms and Conditions']/following-sibling::p");
+
 }
