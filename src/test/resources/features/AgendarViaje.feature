@@ -13,7 +13,7 @@ Feature: Agendar viaje con filtro de precios
     And filtra por precio minimo "<min>" y maximo "<max>"
     And elige el destino "<destino>"
     And completa el formulario con nombre "<nombre>", email "<email>", ssn "<ssn>", telefono "<telefono>"
-    #And adjunta archivo al formulario "<archivo>"
+    And adjunta archivo al formulario "<archivo>"
     And aplica el cupon "<cupon>"
     And acepta los terminos y condiciones y pagar
     Then deberia ver el mensaje "Destination Booked"

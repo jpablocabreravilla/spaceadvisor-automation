@@ -1,16 +1,20 @@
 package com.spaceadvisor.runners;
 
-
-import io.cucumber.junit.CucumberOptions;
 import net.serenitybdd.cucumber.CucumberWithSerenity;
+import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
 
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(
-        features = "src/test/resources/features/",
-        tags = "@tag",
-        glue = {"stepDefinitions", "net.serenitybdd.cucumber.actors"},
+        features = "src/test/resources/features",
+        glue = {
+                "com.spaceadvisor.stepdefinitions",          // tus steps
+                "com.spaceadvisor.stepdefinitions.hooks",    // tus hooks (si los usas)
+                "net.serenitybdd.cucumber.actors"            // inicializa Screenplay automáticamente
+        },
+        // quita el filtro si no usas esa etiqueta en el feature:
+        // tags = "@tag",
+        plugin = {"pretty"},
         snippets = CucumberOptions.SnippetType.CAMELCASE
 )
-public class RunnerTest {
-}
+public class RunnerTest {}
