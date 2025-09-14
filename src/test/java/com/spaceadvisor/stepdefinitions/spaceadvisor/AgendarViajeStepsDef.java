@@ -1,15 +1,18 @@
 package com.spaceadvisor.stepdefinitions.spaceadvisor;
 
-import com.spaceadvisor.screenplay.interactions.destination.SelectDestination;
+import com.spaceadvisor.screenplay.interactions.destination.ClickBookButton;
+import com.spaceadvisor.screenplay.interactions.destination.ClickDestination;
 import com.spaceadvisor.screenplay.interactions.destination.ClickLoadMore;
-import com.spaceadvisor.screenplay.interactions.destination.ClickLaunch;
 import com.spaceadvisor.screenplay.tasks.booking.SelectAdults;
 import com.spaceadvisor.screenplay.tasks.booking.SelectChildren;
 import com.spaceadvisor.screenplay.tasks.booking.SelectDate;
+import com.spaceadvisor.screenplay.tasks.checkout.FillOutBasicForm;
 import com.spaceadvisor.screenplay.tasks.destination.FilterByPrice;
+import com.spaceadvisor.screenplay.tasks.destination.FilterDestination;
 import com.spaceadvisor.screenplay.tasks.general.OpenApplication;
 import com.spaceadvisor.screenplay.ui.booking.SearchOptionsUI;
 import com.spaceadvisor.utilities.DateFormatter;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -62,10 +65,10 @@ public class AgendarViajeStepsDef {
         );
     }
 
-    @When("pulsa en SELECT DESTINATION y luego LOAD MORE")
-    public void pulsaEnSelectDestinationYLuegoLoadMore() {
+    @And("pulsa el boton Select Destination y luego el boton Load More")
+    public void pulsaElBotonSelectDestinationYLuegoElBotonLoadMore() {
         theActorInTheSpotlight().attemptsTo(
-                SelectDestination.click(),
+                ClickDestination.button(),
                 ClickLoadMore.button()
         );
     }
@@ -80,13 +83,16 @@ public class AgendarViajeStepsDef {
     @When("elige el destino {string}")
     public void eligeElDestino(String destination) {
         theActorInTheSpotlight().attemptsTo(
-                ClickLaunch.on(destination),
-                SelectDestination.click()
+                FilterDestination.by(destination),
+                ClickBookButton.click()
         );
     }
 
     @When("completa el formulario con nombre {string}, email {string}, ssn {string}, telefono {string}")
     public void completaElFormulario(String name, String email, String ssn, String phone) {
+        theActorInTheSpotlight().attemptsTo(
+                FillOutBasicForm.with(name, email, ssn, phone)
+        );
     }
 
     @When("adjunta archivo al formulario {string}")
@@ -103,5 +109,10 @@ public class AgendarViajeStepsDef {
 
     @Then("deberia ver el mensaje {string}")
     public void deberiaVerElMensaje(String expectedMessage) {
+    }
+
+    @Then("Pause")
+    public void pause() throws InterruptedException {
+        Thread.sleep(5000);
     }
 }

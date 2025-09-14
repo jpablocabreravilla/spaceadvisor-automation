@@ -1,28 +1,30 @@
 package com.spaceadvisor.screenplay.tasks.destination;
 
+import com.spaceadvisor.screenplay.interactions.destination.ClickDestination;
 import com.spaceadvisor.screenplay.interactions.destination.ClickLaunch;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 
 import static net.serenitybdd.screenplay.Tasks.instrumented;
 
-public class SelectDestination implements Task {
+public class FilterDestination implements Task {
 
     private final String destination;
 
-    public SelectDestination(String destination) {
+    public FilterDestination(String destination) {
         this.destination = destination;
     }
 
     @Override
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
-                ClickLaunch.on(destination)
+                ClickLaunch.on(destination),
+                ClickDestination.button()
         );
     }
 
-    public static SelectDestination called(String destination) {
-        return instrumented(SelectDestination.class, destination);
+    public static FilterDestination by(String destination) {
+        return instrumented(FilterDestination.class, destination);
     }
 }
 
