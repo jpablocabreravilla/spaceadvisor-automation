@@ -10,68 +10,112 @@
     <name>SpaceAdvisor Automation</name>
 
     <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.release>17</maven.compiler.release>
-
-        <!-- Versiones -->
-        <serenity.version>4.2.34</serenity.version>
-        <maven.surefire.version>3.4.0</maven.surefire.version>
-        <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
+        <serenity.version>4.2.32</serenity.version>
+        <maven.build.timestamp.format>dd-MM-yyyy</maven.build.timestamp.format>
     </properties>
 
     <dependencies>
-        <!-- Serenity + JUnit 5 -->
+        <!-- WebDriver Manager -->
+        <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
         <dependency>
-            <groupId>net.serenity-bdd</groupId>
-            <artifactId>serenity-junit5</artifactId>
-            <version>${serenity.version}</version>
-            <scope>test</scope>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>6.1.0</version>
         </dependency>
 
-        <!-- Screenplay + WebDriver -->
+        <!-- SERENITY (Core + JUnit 4 + Screenplay) -->
+        <dependency>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-core</artifactId>
+            <version>${serenity.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-junit</artifactId>
+            <version>${serenity.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-screenplay</artifactId>
+            <version>${serenity.version}</version>
+        </dependency>
         <dependency>
             <groupId>net.serenity-bdd</groupId>
             <artifactId>serenity-screenplay-webdriver</artifactId>
             <version>${serenity.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-cucumber</artifactId>
+            <version>${serenity.version}</version>
+        </dependency>
+
+        <!-- JUnit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.1</version>
+        </dependency>
+
+        <!-- Cucumber -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>7.20.1</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>7.20.1</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
-            <!-- Compilación -->
+            <!-- Maven Compiler Plugin -->
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven.compiler.plugin.version}</version>
+                <version>3.11.0</version>
                 <configuration>
-                    <release>${maven.compiler.release}</release>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
                 </configuration>
             </plugin>
 
-            <!-- Ejecutar JUnit 5 -->
-            <plugin>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>${maven.surefire.version}</version>
-                <configuration>
-                    <includes>
-                        <include>**/*Test.java</include>
-                    </includes>
-                    <useModulePath>false</useModulePath>
-                </configuration>
-            </plugin>
-
-            <!-- Reportes de Serenity -->
+            <!-- Serenity Maven Plugin -->
             <plugin>
                 <groupId>net.serenity-bdd.maven.plugins</groupId>
                 <artifactId>serenity-maven-plugin</artifactId>
                 <version>${serenity.version}</version>
                 <executions>
                     <execution>
-                        <phase>post-integration-test</phase>
-                        <goals><goal>aggregate</goal></goals>
+                        <id>serenity-reports</id>
+                        <!-- Recomendado usar la fase "verify" -->
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>aggregate</goal>
+                        </goals>
                     </execution>
                 </executions>
+            </plugin>
+
+            <!-- Maven Surefire Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <includes>
+                        <include>**/Runner*.java</include>
+                    </includes>
+                </configuration>
             </plugin>
         </plugins>
     </build>
 </project>
+
