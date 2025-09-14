@@ -19,12 +19,11 @@ Feature: Agendar viaje parametrizando los filtros.
     And aplica el cupon "<cupon>"
     And acepta los terminos y condiciones
     And finalizar el pago
-    #Then deberia ver el mensaje "Destination Booked"
-    #Then Pause
+    Then deberia ver el mensaje "Destination Booked"
 
     Examples:
       | partida    | regreso    | adultos | ninos | min | max  | destino               | nombre       | email         | ssn         | telefono     | archivo                              | cupon   |
-      | 25/09/2025 | 01/10/2025 | 2       | 1     | 100 | 1799 | Sant Cugat Del Valles | Juan Cabrera | juan@test.com | 123-45-6789 | +17871234567 | src/test/resources/data/dataTest.png | PROMO10 |
+      | 25/09/2025 | 01/10/2025 | 2       | 1     | 100 | 1000 | Tongli | Juan Cabrera | juan@test.com | 123-45-6789 | +17871234567 | src/test/resources/data/dataTest.png | PROMO10 |
 
       # Reglas y restricciones para este escenario:
       # 1. Las fechas de partida y regreso deben seguir el formato dd/mm/yyyy.
@@ -52,7 +51,6 @@ Feature: Agendar viaje parametrizando los filtros.
     And adjunta archivo al formulario "<archivo>"
     And aplica el cupon "<cupon>"
     And finalizar el pago
-    #Then Pause
 
     Examples:
       | partida    | regreso    | adultos | ninos | color | destino | nombre       | email         | ssn         | telefono     | archivo                              | cupon   |

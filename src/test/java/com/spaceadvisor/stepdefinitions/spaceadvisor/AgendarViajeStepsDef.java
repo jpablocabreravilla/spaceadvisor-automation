@@ -38,13 +38,9 @@ public class AgendarViajeStepsDef {
 
     @When("selecciona fechas de partida {string} y regreso {string}")
     public void seleccionaFechas(String departure, String returning) {
-        var departureDate = DateFormatter.convert(departure);   // dd/MM/yyyy
+        var departureDate = DateFormatter.convert(departure);
         var returnDate = DateFormatter.convert(returning);
 
-        //theActorInTheSpotlight().remember("DEPARTURE", departureDate);
-        //theActorInTheSpotlight().remember("RETURN",    returnDate);
-
-        // ------ Departure ------
         theActorInTheSpotlight().attemptsTo(
                 SelectDate.on(
                         SearchOptionsUI.DEPARTING_FIELD,
@@ -54,7 +50,6 @@ public class AgendarViajeStepsDef {
                 )
         );
 
-        // ------ Return ------
         theActorInTheSpotlight().attemptsTo(
                 SelectDate.on(
                         SearchOptionsUI.RETURNING_FIELD,
@@ -150,11 +145,6 @@ public class AgendarViajeStepsDef {
         theActorInTheSpotlight().should(
                 seeThat("confirmation message", ConfirmationMessage.value(), equalTo(expectedMessage))
         );
-    }
-
-    @Then("Pause")
-    public void pause() throws InterruptedException {
-        Thread.sleep(5000);
     }
 
 }

@@ -2,7 +2,7 @@ package com.spaceadvisor.screenplay.interactions.destination;
 
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Interaction;
-import net.serenitybdd.screenplay.actions.Clear;
+import net.serenitybdd.screenplay.actions.DoubleClick;
 import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.targets.Target;
 import org.openqa.selenium.Keys;
@@ -22,7 +22,8 @@ public class EnterPrice implements Interaction {
     @Override
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
-                Clear.field(field),
+                DoubleClick.on(field),
+                Enter.keyValues(Keys.DELETE).into(field),
                 Enter.theValue(value).into(field),
                 Enter.keyValues(Keys.ENTER).into(field)
         );

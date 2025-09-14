@@ -27,7 +27,6 @@
         <maven.build.timestamp.format>dd-MM-yyyy</maven.build.timestamp.format>
     </properties>
 
-    <!-- Importante: sin BOM ni dependencias explícitas de io.cucumber -->
     <dependencies>
         <!-- Serenity (core, junit4, Screenplay, WebDriver, Cucumber bridge) -->
         <dependency>
@@ -56,7 +55,7 @@
             <version>${serenity.version}</version>
         </dependency>
 
-        <!-- JUnit 4 (requerido por @RunWith(CucumberWithSerenity.class)) -->
+        <!-- JUnit 4  -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -64,7 +63,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- WebDriverManager (opcional si no usas drivers.autodownload) -->
+        <!-- WebDriverManager -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
@@ -72,7 +71,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Logger simple para evitar el warning de SLF4J -->
+        <!-- Logger SLF4J -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
@@ -95,7 +94,7 @@
                 </configuration>
             </plugin>
 
-            <!-- Surefire (JUnit 4 runner; patrón para tus runners) -->
+            <!-- Surefire JUnit 4 runner -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -109,7 +108,7 @@
                 </configuration>
             </plugin>
 
-            <!-- Serenity reports en verify -->
+            <!-- Serenity reports-->
             <plugin>
                 <groupId>net.serenity-bdd.maven.plugins</groupId>
                 <artifactId>serenity-maven-plugin</artifactId>
