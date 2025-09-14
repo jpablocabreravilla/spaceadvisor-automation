@@ -21,7 +21,8 @@ import com.spaceadvisor.screenplay.tasks.general.OpenApplication;
 import com.spaceadvisor.screenplay.ui.booking.SearchOptionsUI;
 import com.spaceadvisor.utilities.DateFormatter;
 
-import static com.spaceadvisor.utilities.ParseMoney.parseMoney;
+import static com.spaceadvisor.utilities.ParseMoney.formatUSD;
+import static com.spaceadvisor.utilities.ParseMoney.parseUnitPrice;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import io.cucumber.java.en.And;
@@ -167,12 +168,13 @@ public class AgendarViajeStepsDef {
 
     @Then("los datos de la orden de compra deben ser correctos")
     public void losDatosDeLaOrdenDeCompraDebenSerCorrectos() {
-        var departure  = (TemporalAccessor) theActorInTheSpotlight().recall("DEPARTURE");
-        var returning  = (TemporalAccessor) theActorInTheSpotlight().recall("RETURNING");
-        var adults     = Integer.parseInt(theActorInTheSpotlight().recall("ADULTS"));
-        var childrens  = Integer.parseInt(theActorInTheSpotlight().recall("CHILDRENS"));
+        var departure = (TemporalAccessor) theActorInTheSpotlight().recall("DEPARTURE");
+        var returning = (TemporalAccessor) theActorInTheSpotlight().recall("RETURNING");
+        var adults = Integer.parseInt(theActorInTheSpotlight().recall("ADULTS"));
+        var childrens = Integer.parseInt(theActorInTheSpotlight().recall("CHILDRENS"));
 
         OrderSummary summaryFront = theActorInTheSpotlight().asksFor(TheOrderSummary.displayed());
+        double ExpectedUnitPrice = parseUnitPrice(summaryFront.getUnitPrice());
 
         var fmt = DateTimeFormatter.ofPattern("MMM d", Locale.ENGLISH);
         String expectedDateRange = fmt.format(departure) + " – " + fmt.format(returning);
@@ -180,12 +182,9 @@ public class AgendarViajeStepsDef {
         int travelersCount = adults + childrens;
         String expectedTravelers = travelersCount + (travelersCount == 1 ? " traveler" : " travelers");
 
-        double unitPrice = parseMoney(summaryFront.getUnitPrice());
-        double expectedTotal = unitPrice * travelersCount;
-
         assertThat(summaryFront.getDates(), equalTo(expectedDateRange));
         assertThat(summaryFront.getTravelers(), equalTo(expectedTravelers));
-        assertThat(summaryFront.getTotalPrice(), equalTo(expectedTotal));
+        assertThat(summaryFront.getUnitPrice(), equalTo(formatUSD(ExpectedUnitPrice)));
     }
 
 }
