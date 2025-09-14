@@ -32,4 +32,10 @@ public class DateFormatter {
     public static String getYear(LocalDate date) {
         return String.valueOf(date.getYear());
     }
+
+    public static String formatRange(LocalDate departure, LocalDate returning) {
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("MMM d", Locale.ENGLISH);
+        return fmt.format(departure) + " – " + fmt.format(returning);
+    }
+
 }

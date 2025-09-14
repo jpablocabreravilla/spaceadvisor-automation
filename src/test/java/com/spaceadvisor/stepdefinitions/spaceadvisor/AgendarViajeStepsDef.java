@@ -31,9 +31,8 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
 import java.time.temporal.TemporalAccessor;
-import java.util.Locale;
 
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
@@ -175,17 +174,17 @@ public class AgendarViajeStepsDef {
         var childrens = Integer.parseInt(theActorInTheSpotlight().recall("CHILDRENS"));
 
         OrderSummary summaryFront = theActorInTheSpotlight().asksFor(TheOrderSummary.displayed());
-        double ExpectedUnitPrice = parseUnitPrice(summaryFront.getUnitPrice());
 
-        var fmt = DateTimeFormatter.ofPattern("MMM d", Locale.ENGLISH);
-        String expectedDateRange = fmt.format(departure) + " – " + fmt.format(returning);
+        double expectedUnitPrice = parseUnitPrice(summaryFront.getUnitPrice());
 
         int travelersCount = adults + childrens;
         String expectedTravelers = travelersCount + (travelersCount == 1 ? " traveler" : " travelers");
 
+        String expectedDateRange = DateFormatter.formatRange(LocalDate.from(departure), LocalDate.from(returning));
+
         assertThat(summaryFront.getDates(), equalTo(expectedDateRange));
         assertThat(summaryFront.getTravelers(), equalTo(expectedTravelers));
-        assertThat(summaryFront.getUnitPrice(), equalTo(formatUSD(ExpectedUnitPrice)));
+        assertThat(summaryFront.getUnitPrice(), equalTo(formatUSD(expectedUnitPrice)));
     }
 
     @Then("se debe desplegar una alerta con el mensaje {string}")
