@@ -1,5 +1,7 @@
 package com.spaceadvisor.stepdefinitions.spaceadvisor;
 
+import com.spaceadvisor.screenplay.interactions.destination.ClickDestination;
+import com.spaceadvisor.screenplay.interactions.destination.ClickLoadMore;
 import com.spaceadvisor.screenplay.tasks.booking.SelectAdults;
 import com.spaceadvisor.screenplay.tasks.booking.SelectChildren;
 import com.spaceadvisor.screenplay.tasks.booking.SelectDate;
@@ -60,6 +62,10 @@ public class AgendarViajeStepsDef {
 
     @When("pulsa en SELECT DESTINATION y luego LOAD MORE")
     public void pulsaEnSelectDestinationYLuegoLoadMore() {
+        theActorInTheSpotlight().attemptsTo(
+                ClickDestination.button(),
+                ClickLoadMore.button()
+        );
     }
 
     @When("filtra por precio minimo {string} y maximo {string}")

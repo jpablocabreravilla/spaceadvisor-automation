@@ -4,9 +4,6 @@ import net.serenitybdd.screenplay.targets.Target;
 
 public class FiltersUI {
 
-    public static final Target LOAD_MORE_BUTTON = Target.the("Load more button")
-            .locatedBy("//button[@data-react-toolbox='button' and normalize-space(.)='Load more']");
-
     public static final Target MIN_PRICE_FIELD = Target.the("Minimum price input field")
             .locatedBy("//div[contains(@class,'Gallery__price-filter___')]//input[@role='input' and @name='name']");
 

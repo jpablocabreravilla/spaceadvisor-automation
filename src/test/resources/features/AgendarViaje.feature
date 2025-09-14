@@ -19,5 +19,5 @@ Feature: Agendar viaje con filtro de precios
     Then deberia ver el mensaje "Destination Booked"
 
     Examples:
-      | partida    | regreso    | adultos | ninos | min | max  | destino               | nombre       | email         | ssn         | telefono     | archivo                     | cupon   |
-      | 30/12/2025 | 31/12/2025 | 2       | 1     | 100 | 1799 | Sant Cugat Del Valles | Juan Cabrera | juan@test.com | 123-45-6789 | +17871234567 | src/test/resources/data/id.png | PROMO10 |
+      | partida    | regreso    | adultos | ninos | min | max  | destino               | nombre       | email         | ssn         | telefono     | archivo                        | cupon   |
+      | 25/09/2025 | 01/10/2025 | 2       | 1     | 100 | 1799 | Sant Cugat Del Valles | Juan Cabrera | juan@test.com | 123-45-6789 | +17871234567 | src/test/resources/data/id.png | PROMO10 |
