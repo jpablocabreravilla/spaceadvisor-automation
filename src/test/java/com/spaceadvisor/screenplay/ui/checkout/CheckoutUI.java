@@ -31,4 +31,8 @@ public class CheckoutUI {
 
     public static final Target BOOKING_CONFIRMATION_MESSAGE = Target.the("Booking confirmation message")
             .located(By.xpath("//*[contains(text(),'Destination Booked')]"));
+
+    public static final Target FILE_INPUT = Target.the("file upload input")
+            .locatedBy("//div[contains(@class,'CustomerInfo__dropzone')]/input[@type='file']");
+
 }
