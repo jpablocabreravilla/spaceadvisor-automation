@@ -1,5 +1,7 @@
 package com.spaceadvisor.stepdefinitions.spaceadvisor;
 
+import com.spaceadvisor.screenplay.tasks.booking.SelectAdults;
+import com.spaceadvisor.screenplay.tasks.booking.SelectChildren;
 import com.spaceadvisor.screenplay.tasks.booking.SelectDate;
 import com.spaceadvisor.screenplay.tasks.general.OpenApplication;
 import com.spaceadvisor.screenplay.ui.booking.SearchOptionsUI;
@@ -50,6 +52,10 @@ public class AgendarViajeStepsDef {
 
     @When("define pasajeros adultos {string} y ninos {string}")
     public void definePasajeros(String adults, String children) {
+        theActorInTheSpotlight().attemptsTo(
+                SelectAdults.withAmount(adults),
+                SelectChildren.withAmount(children)
+        );
     }
 
     @When("pulsa en SELECT DESTINATION y luego LOAD MORE")

@@ -16,13 +16,14 @@ public class SearchOptionsUI {
     public static final Target ADULTS_DROPDOWN = Target.the("Adults (18+) dropdown")
             .locatedBy("//div[@data-react-toolbox='dropdown'][.//*[contains(normalize-space(.),'Adults (18+)')]]");
 
-    /** Opción para cantidad de adultos (acepta número o texto) */
+    /**
+     * Opción para cantidad de adultos (acepta número o texto)
+     */
     public static Target ADULTS_OPTION(String amount) {
         return Target.the("Adults option '" + amount + "'")
                 .locatedBy("//li[contains(normalize-space(.),'Adults')]/following-sibling::li[normalize-space(.)='{0}']")
                 .of(amount);
     }
-    public static Target ADULTS_OPTION(int amount) { return ADULTS_OPTION(String.valueOf(amount)); }
 
     // -------- Children dropdown --------
     public static final Target CHILDREN_DROPDOWN = Target.the("Children (0-7) dropdown")
@@ -33,7 +34,6 @@ public class SearchOptionsUI {
                 .locatedBy("//li[contains(normalize-space(.),'Children')]/following-sibling::li[normalize-space(.)='{0}']")
                 .of(amount);
     }
-    public static Target CHILDREN_OPTION(int amount) { return CHILDREN_OPTION(String.valueOf(amount)); }
 
     // -------- Destination button --------
     public static final Target SELECT_DESTINATION_BUTTON = Target.the("Select Destination button")
