@@ -6,6 +6,7 @@ import com.spaceadvisor.screenplay.interactions.destination.ClickLoadMore;
 import com.spaceadvisor.screenplay.tasks.booking.SelectAdults;
 import com.spaceadvisor.screenplay.tasks.booking.SelectChildren;
 import com.spaceadvisor.screenplay.tasks.booking.SelectDate;
+import com.spaceadvisor.screenplay.tasks.checkout.ApplyPromoCode;
 import com.spaceadvisor.screenplay.tasks.checkout.FillOutBasicForm;
 import com.spaceadvisor.screenplay.tasks.destination.FilterByPrice;
 import com.spaceadvisor.screenplay.tasks.destination.FilterDestination;
@@ -97,10 +98,14 @@ public class AgendarViajeStepsDef {
 
     @When("adjunta archivo al formulario {string}")
     public void adjuntaArchivoAlFormulario(String filePath) {
+        // ...
     }
 
     @When("aplica el cupon {string}")
     public void aplicaElCupon(String coupon) {
+        theActorInTheSpotlight().attemptsTo(
+                ApplyPromoCode.with(coupon)
+        );
     }
 
     @When("acepta los terminos y condiciones y pagar")
