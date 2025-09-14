@@ -19,4 +19,13 @@ public class FiltersUI {
                 .of(option);
     }
 
+    public static final Target COLOR_DROPDOWN = Target.the("Planet color dropdown")
+            .locatedBy("//div[contains(@class,'Gallery__filters-box')]//div[contains(@class,'Gallery__dropdown')]//input[@value='Planet color']");
+
+    public static Target COLOR_OPTION(String color) {
+        return Target.the("Planet color option '" + color + "'")
+                .locatedBy("//ul[contains(@class,'theme__values')]//li[normalize-space(.)='{0}']")
+                .of(color);
+
+    }
 }

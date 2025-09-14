@@ -3,6 +3,7 @@ package com.spaceadvisor.stepdefinitions.spaceadvisor;
 import com.spaceadvisor.screenplay.interactions.checkout.AcceptTerms;
 import com.spaceadvisor.screenplay.interactions.checkout.ClickPayNow;
 import com.spaceadvisor.screenplay.interactions.destination.ClickBookButton;
+import com.spaceadvisor.screenplay.interactions.destination.ClickColor;
 import com.spaceadvisor.screenplay.interactions.destination.ClickDestination;
 import com.spaceadvisor.screenplay.interactions.destination.ClickLoadMore;
 import com.spaceadvisor.screenplay.questions.checkout.ConfirmationMessage;
@@ -12,6 +13,7 @@ import com.spaceadvisor.screenplay.tasks.booking.SelectDate;
 import com.spaceadvisor.screenplay.tasks.checkout.ApplyPromoCode;
 import com.spaceadvisor.screenplay.tasks.checkout.FillOutBasicForm;
 import com.spaceadvisor.screenplay.tasks.checkout.UploadFile;
+import com.spaceadvisor.screenplay.tasks.destination.FilterByColor;
 import com.spaceadvisor.screenplay.tasks.destination.FilterByPrice;
 import com.spaceadvisor.screenplay.tasks.destination.FilterDestination;
 import com.spaceadvisor.screenplay.tasks.general.OpenApplication;
@@ -90,7 +92,21 @@ public class AgendarViajeStepsDef {
     @When("elige el destino {string}")
     public void eligeElDestino(String destination) {
         theActorInTheSpotlight().attemptsTo(
-                FilterDestination.by(destination),
+                FilterDestination.by(destination)
+        );
+    }
+
+    @When("elige el color del planeta  {string}")
+    public void eligeElColorDelPlaneta(String color) throws InterruptedException {
+        theActorInTheSpotlight().attemptsTo(
+                FilterByColor.with(color)
+        );
+    }
+
+
+    @And("selecciona la tarjeta filtrada")
+    public void seleccionaLaTarjetaFiltrada() {
+        theActorInTheSpotlight().attemptsTo(
                 ClickBookButton.click()
         );
     }
@@ -116,10 +132,16 @@ public class AgendarViajeStepsDef {
         );
     }
 
-    @When("acepta los terminos y condiciones y pagar")
-    public void aceptaLosTerminosYCondicionesYPagar() {
+    @When("acepta los terminos y condiciones")
+    public void aceptaLosTerminosYCondiciones() {
         theActorInTheSpotlight().attemptsTo(
-                AcceptTerms.now(),
+                AcceptTerms.now()
+        );
+    }
+
+    @When("finalizar el pago")
+    public void finalizarElPago() {
+        theActorInTheSpotlight().attemptsTo(
                 ClickPayNow.button()
         );
     }
@@ -135,4 +157,5 @@ public class AgendarViajeStepsDef {
     public void pause() throws InterruptedException {
         Thread.sleep(5000);
     }
+
 }
