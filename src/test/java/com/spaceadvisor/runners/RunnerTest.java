@@ -12,7 +12,6 @@ import org.junit.runner.RunWith;
                 "com.spaceadvisor.stepdefinitions.hooks",
                 "net.serenitybdd.cucumber.actors"
         },
-        tags = "@AgendarViaje",
         plugin = {"pretty"},
         snippets = CucumberOptions.SnippetType.CAMELCASE
 )

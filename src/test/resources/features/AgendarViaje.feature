@@ -6,12 +6,13 @@ Feature: Agendar viaje parametrizando los filtros.
   Background:
     Given el usuario ingresa a la web de reservas
 
+  @FiltroA
   Scenario Outline: Reserva exitosa filtrando por precio
     When selecciona fechas de partida "<partida>" y regreso "<regreso>"
     And define pasajeros adultos "<adultos>" y ninos "<ninos>"
     And pulsa el boton Select Destination y luego el boton Load More
     And filtra por precio minimo "<min>" y maximo "<max>"
-    And elige el destino "<destino>"
+    And filtra por el destino "<destino>"
     And selecciona la tarjeta filtrada
     And completa el formulario con nombre "<nombre>", email "<email>", ssn "<ssn>", telefono "<telefono>"
     And adjunta archivo al formulario "<archivo>"
@@ -39,12 +40,13 @@ Feature: Agendar viaje parametrizando los filtros.
       # 11. Al presionar el botón PAY NOW, el sistema debe mostrar/simular el mensaje "Destination Booked".
       #     -> Fallo intencionado ya que la web no muestra dicho mensaje.
 
+  @FiltroB
   Scenario Outline: Reserva exitosa filtrando por color de planeta
     When selecciona fechas de partida "<partida>" y regreso "<regreso>"
     And define pasajeros adultos "<adultos>" y ninos "<ninos>"
     And pulsa el boton Select Destination y luego el boton Load More
     And elige el color del planeta  "<color>"
-    And elige el destino "<destino>"
+    And filtra por el destino "<destino>"
     And selecciona la tarjeta filtrada
     And completa el formulario con nombre "<nombre>", email "<email>", ssn "<ssn>", telefono "<telefono>"
     And adjunta archivo al formulario "<archivo>"

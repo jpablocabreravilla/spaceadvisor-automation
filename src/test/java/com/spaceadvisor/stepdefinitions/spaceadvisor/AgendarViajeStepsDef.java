@@ -74,7 +74,7 @@ public class AgendarViajeStepsDef {
         );
     }
 
-    @And("pulsa el boton Select Destination y luego el boton Load More")
+    @When("pulsa el boton Select Destination y luego el boton Load More")
     public void pulsaElBotonSelectDestinationYLuegoElBotonLoadMore() {
         theActorInTheSpotlight().attemptsTo(
                 ClickDestination.button(),
@@ -89,8 +89,8 @@ public class AgendarViajeStepsDef {
         );
     }
 
-    @When("elige el destino {string}")
-    public void eligeElDestino(String destination) {
+    @And("filtra por el destino {string}")
+    public void filtraPorElDestino(String destination) {
         theActorInTheSpotlight().attemptsTo(
                 FilterDestination.by(destination)
         );
