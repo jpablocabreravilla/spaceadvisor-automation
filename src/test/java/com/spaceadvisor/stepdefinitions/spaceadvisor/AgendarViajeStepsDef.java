@@ -1,6 +1,9 @@
 package com.spaceadvisor.stepdefinitions.spaceadvisor;
 
+import com.spaceadvisor.screenplay.tasks.booking.SelectDate;
 import com.spaceadvisor.screenplay.tasks.general.OpenApplication;
+import com.spaceadvisor.screenplay.ui.booking.SearchOptionsUI;
+import com.spaceadvisor.utilities.DateFormatter;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -18,6 +21,31 @@ public class AgendarViajeStepsDef {
 
     @When("selecciona fechas de partida {string} y regreso {string}")
     public void seleccionaFechas(String departure, String returning) {
+        var departureDate = DateFormatter.convert(departure);   // dd/MM/yyyy
+        var returnDate    = DateFormatter.convert(returning);
+
+        //theActorInTheSpotlight().remember("DEPARTURE", departureDate);
+        //theActorInTheSpotlight().remember("RETURN",    returnDate);
+
+        // ------ Departure ------
+        theActorInTheSpotlight().attemptsTo(
+                SelectDate.on(
+                        SearchOptionsUI.DEPARTING_FIELD,
+                        DateFormatter.getDay(departureDate),
+                        DateFormatter.getMonthName(departureDate),
+                        DateFormatter.getYear(departureDate)
+                )
+        );
+
+        // ------ Return ------
+        theActorInTheSpotlight().attemptsTo(
+                SelectDate.on(
+                        SearchOptionsUI.RETURNING_FIELD,
+                        DateFormatter.getDay(returnDate),
+                        DateFormatter.getMonthName(returnDate),
+                        DateFormatter.getYear(returnDate)
+                )
+        );
     }
 
     @When("define pasajeros adultos {string} y ninos {string}")
