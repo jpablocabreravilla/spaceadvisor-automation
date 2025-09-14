@@ -7,10 +7,10 @@ Feature: Agendar viaje con filtro de precios
     Given el usuario ingresa a la web de reservas
 
   Scenario Outline: Reserva exitosa filtrando por precio
-    #When selecciona fechas de partida "<partida>" y regreso "<regreso>"
-    #And define pasajeros adultos "<adultos>" y ninos "<ninos>"
-    #And pulsa el boton Select Destination y luego el boton Load More
-    #And filtra por precio minimo "<min>" y maximo "<max>"
+    When selecciona fechas de partida "<partida>" y regreso "<regreso>"
+    And define pasajeros adultos "<adultos>" y ninos "<ninos>"
+    And pulsa el boton Select Destination y luego el boton Load More
+    And filtra por precio minimo "<min>" y maximo "<max>"
     And elige el destino "<destino>"
     And completa el formulario con nombre "<nombre>", email "<email>", ssn "<ssn>", telefono "<telefono>"
     And adjunta archivo al formulario "<archivo>"
