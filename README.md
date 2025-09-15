@@ -20,7 +20,9 @@ Maven:
 - mvn clean
 - mvn clean test 
 - mvn clean verify
-- mvn clean verify -Dwebdriver.driver=Browser
+- mvn clean verify -Dwebdriver.driver=chrome/default
+- mvn clean verify -Dwebdriver.driver=firefox
+
 
 Junit:
 - -Dcucumber.filter.tags=@tagName

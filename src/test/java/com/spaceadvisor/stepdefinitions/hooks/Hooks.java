@@ -13,7 +13,7 @@ import static net.serenitybdd.screenplay.actors.OnStage.theActorCalled;
 
 public class Hooks {
 
-    @Managed(driver = "chrome")
+    @Managed
     WebDriver driver;
 
     @Before(order = 0)
@@ -24,11 +24,10 @@ public class Hooks {
     @Before(order = 1)
     public void prepareActor() {
         theActorCalled("Usuario").can(BrowseTheWeb.with(driver));
-        // Ahora theActorInTheSpotlight() ya no es null
     }
 
     @After
     public void tearDown() {
-        drawTheCurtain(); // Serenity cierra el driver automáticamente
+        drawTheCurtain();
     }
 }
